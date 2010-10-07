@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 20100910030640) do
 
   create_table "callbacks", :force => true do |t|
-    t.string   "body"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

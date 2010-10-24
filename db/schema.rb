@@ -9,12 +9,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100910030640) do
+ActiveRecord::Schema.define(:version => 20101024201559) do
 
   create_table "callbacks", :force => true do |t|
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "google_orders", :force => true do |t|
+    t.integer  "google_order_number",     :null => false
+    t.integer  "merchant_order_number",   :null => false
+    t.date     "order_creation_date",     :null => false
+    t.string   "currency_of_transaction", :null => false
+    t.decimal  "order_amount",            :null => false
+    t.decimal  "amount_charged",          :null => false
+    t.string   "financial_status",        :null => false
+    t.string   "fulfillment_status",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "email",                     :limit => 100
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+  end
+
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end
